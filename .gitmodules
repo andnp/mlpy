@@ -1,0 +1,3 @@
+[submodule "ResearchML"]
+	path = ResearchML
+	url = https://github.com/andnp/ResearchML.git
