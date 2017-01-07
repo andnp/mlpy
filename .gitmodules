@@ -1,3 +1,6 @@
 [submodule "ResearchML"]
 	path = ResearchML
 	url = https://github.com/andnp/ResearchML.git
+[submodule "Numpy2Eigen"]
+	path = Numpy2Eigen
+	url = https://github.com/andnp/Numpy2Eigen.git
