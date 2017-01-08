@@ -8,6 +8,10 @@ namespace py = boost::python;
 class PyData : public Data {
  public:
     PyData(PyObject* data, PyObject* targets) : Data() {
+        loadData(data, targets);
+    }
+
+    void loadData(PyObject* data, PyObject* targets) {
         train_data = Numpy2Eigen::getEigenMatrix(data).transpose().cast<float>();
         train_targets = Numpy2Eigen::getEigenMatrix(targets).transpose().cast<float>();
     }
@@ -78,6 +82,8 @@ BOOST_PYTHON_MODULE(mlpy) {
         .def("printHeader", &Algorithm::printHeader)
         .def("loadData", static_cast<void(Algorithm::*)(Data&)>(&Algorithm::loadData))
         .def("optimizeBatch", &Algorithm::optimizeBatch)
+        .def("loadModel", &Algorithm::loadModel)
+        .def("saveModel", &Algorithm::saveModel)
         .def("reset", &Algorithm::reset)
         .def("predict", predict)
         .def("loadParameters", loadParameters)
@@ -89,5 +95,6 @@ BOOST_PYTHON_MODULE(mlpy) {
     py::class_<PyData, py::bases<Data>>("Data", py::init<PyObject*, PyObject*>())
         .def("scaleData", static_cast<void(PyData::*)(void)>(&PyData::scaleData))
         .def("scaleExternal", scaleData)
+        .def("loadData", &PyData::loadData)
         .def("printData", &PyData::printData);
 }

@@ -1,6 +1,7 @@
 import mlpy
 import numpy as np
 from numpy import genfromtxt
+import os.path
 
 my_data = genfromtxt('/home/andy/Documents/aquarium/max_level.dat', delimiter=',')
 
@@ -20,7 +21,12 @@ alg = mlpy.ANN(1)
 alg.loadParameters(parameters)
 alg.loadData(dat)
 alg.reset()
+
+if (os.path.isfile("FishTankNet_0")):
+    alg.loadModel("FishTankNet")
+
 alg.optimizeBatch(20, 20)
+alg.saveModel("FishTankNet")
 X = dat.scaleExternal(X)
 P = alg.predict(X)
 
