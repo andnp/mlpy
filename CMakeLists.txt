@@ -6,7 +6,7 @@ IF(NOT CMAKE_BUILD_TYPE)
   #SET(CMAKE_BUILD_TYPE "MINSIZEREL")
 ENDIF()
 
-set(CMAKE_CXX_FLAGS "-std=gnu++0x -fPIC ${CMAKE_CXX_FLAGS} -msse4.1 -msse2 -DEIGEN_NO_DEBUG -DVIENNACL_HAVE_EIGEN -Wno-deprecated-declarations")
+set(CMAKE_CXX_FLAGS "-fpermissive -std=gnu++0x -fPIC ${CMAKE_CXX_FLAGS} -DEIGEN_NO_DEBUG -DVIENNACL_HAVE_EIGEN -Wno-deprecated-declarations")
 
 find_package(PythonLibs REQUIRED)
 message("Include dirs of Python: " ${PYTHON_INCLUDE_DIRS} )
